@@ -8,6 +8,10 @@ cd "$ROOT/frontend"
 yarn install --silent
 yarn build
 
+# Clear zig cache to force re-embedding of updated www/ files
+echo "==> Clearing zig cache..."
+rm -rf "$ROOT/backend/.zig-cache"
+
 # Clean and recreate release directories
 echo "==> Cleaning releases/..."
 rm -rf "$RELEASES"

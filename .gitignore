@@ -9,9 +9,9 @@ backend/data/
 frontend/node_modules/
 frontend/dist/
 
-# Distribution binaries
+# Old dist/ folder (replaced by releases/)
 dist/
-releases/
+# releases/ IS committed — zip files are safe for git
 
 # macOS
 .DS_Store

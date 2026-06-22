@@ -57,7 +57,7 @@ fn handleConnInner(ctx: *HandlerCtx) !void {
     const path = if (std.mem.indexOfScalar(u8, raw_path, '?')) |q| raw_path[0..q] else raw_path;
 
     var content_length: usize = 0;
-    var header_buf: [256]u8 = undefined;
+    var header_buf: [8192]u8 = undefined;
     while (true) {
         const header = try readLine(&reader.interface, &header_buf);
         if (header.len == 0) break;

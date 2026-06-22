@@ -8,6 +8,10 @@ cd /d "%ROOT%frontend"
 call yarn install --silent
 call yarn build
 
+REM Clear zig cache to force re-embedding of updated www/ files
+echo =^> Clearing zig cache...
+if exist "%ROOT%backend\.zig-cache" rmdir /s /q "%ROOT%backend\.zig-cache"
+
 REM Clean and recreate release directories
 echo =^> Cleaning releases\...
 if exist "%RELEASES%" rmdir /s /q "%RELEASES%"
