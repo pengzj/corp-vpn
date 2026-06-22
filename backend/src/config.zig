@@ -308,6 +308,96 @@ fn ensureDataDir(io: std.Io) !void {
     };
 }
 
+// ---- Unit Tests ----
+
+test "Protocol.fromString - valid values" {
+    try std.testing.expectEqual(Protocol.socks5,      Protocol.fromString("socks5").?);
+    try std.testing.expectEqual(Protocol.http_connect, Protocol.fromString("http_connect").?);
+    try std.testing.expectEqual(Protocol.shadowsocks,  Protocol.fromString("shadowsocks").?);
+}
+
+test "Protocol.fromString - unknown returns null" {
+    try std.testing.expect(Protocol.fromString("wireguard") == null);
+    try std.testing.expect(Protocol.fromString("") == null);
+    try std.testing.expect(Protocol.fromString("SOCKS5") == null); // case-sensitive
+}
+
+test "Protocol round-trip toString -> fromString" {
+    const cases = [_]Protocol{ .socks5, .http_connect, .shadowsocks };
+    for (cases) |p| {
+        try std.testing.expectEqual(p, Protocol.fromString(p.toString()).?);
+    }
+}
+
+test "Mode.fromString - valid values" {
+    try std.testing.expectEqual(Mode.off,    Mode.fromString("off").?);
+    try std.testing.expectEqual(Mode.global, Mode.fromString("global").?);
+    try std.testing.expectEqual(Mode.local,  Mode.fromString("local").?);
+}
+
+test "Mode.fromString - unknown returns null" {
+    try std.testing.expect(Mode.fromString("auto") == null);
+    try std.testing.expect(Mode.fromString("Global") == null);
+}
+
+test "Mode round-trip toString -> fromString" {
+    const cases = [_]Mode{ .off, .global, .local };
+    for (cases) |m| {
+        try std.testing.expectEqual(m, Mode.fromString(m.toString()).?);
+    }
+}
+
+test "SsCipher.fromString - valid values" {
+    try std.testing.expectEqual(SsCipher.aes_256_gcm,       SsCipher.fromString("aes-256-gcm").?);
+    try std.testing.expectEqual(SsCipher.chacha20_poly1305,  SsCipher.fromString("chacha20-poly1305").?);
+}
+
+test "SsCipher.fromString - unknown returns null" {
+    try std.testing.expect(SsCipher.fromString("aes-128-gcm") == null);
+    try std.testing.expect(SsCipher.fromString("") == null);
+}
+
+test "SsCipher round-trip toString -> fromString" {
+    const cases = [_]SsCipher{ .aes_256_gcm, .chacha20_poly1305 };
+    for (cases) |c| {
+        try std.testing.expectEqual(c, SsCipher.fromString(c.toString()).?);
+    }
+}
+
+test "Auth.none tag" {
+    const a = Auth{ .none = {} };
+    try std.testing.expect(a == .none);
+}
+
+test "Auth.userpass fields" {
+    const a = Auth{ .userpass = .{ .username = "alice", .password = "secret" } };
+    try std.testing.expectEqualStrings("alice",  a.userpass.username);
+    try std.testing.expectEqualStrings("secret", a.userpass.password);
+}
+
+test "Auth.shadowsocks fields" {
+    const a = Auth{ .shadowsocks = .{ .password = "pw", .cipher = .aes_256_gcm } };
+    try std.testing.expectEqualStrings("pw", a.shadowsocks.password);
+    try std.testing.expectEqual(SsCipher.aes_256_gcm, a.shadowsocks.cipher);
+}
+
+test "Endpoint fields are accessible" {
+    const ep = Endpoint{
+        .id       = "test-id",
+        .label    = "My Server",
+        .protocol = .socks5,
+        .host     = "proxy.example.com",
+        .port     = 1080,
+        .auth     = .{ .none = {} },
+        .tls      = false,
+        .enabled  = true,
+    };
+    try std.testing.expectEqualStrings("test-id", ep.id);
+    try std.testing.expectEqual(@as(u16, 1080), ep.port);
+    try std.testing.expect(ep.enabled);
+    try std.testing.expect(!ep.tls);
+}
+
 pub fn generateId(allocator: std.mem.Allocator) ![]u8 {
     const io = @import("runtime.zig").io;
     var buf: [16]u8 = undefined;
