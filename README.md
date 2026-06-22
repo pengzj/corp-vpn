@@ -15,10 +15,14 @@ Your app → ops_vpn (local proxy) → remote proxy server → internet
 
 ## ⚡ Download & Run (no coding required)
 
-**Download the latest release from GitLab:**  
-👉 **https://git.ringcentral.com/rc-ai-learning/francis-peng-vpn/-/releases/latest**
+Download the zip for your platform directly from the repo:
 
-Pick the zip for your platform, unzip, and run.
+| Platform | Download |
+|----------|---------|
+| macOS Apple Silicon (M1/M2/M3) | [ops_vpn-macOS-M1.zip](releases/macOS/ops_vpn-macOS-M1.zip) |
+| macOS Intel | [ops_vpn-macOS-Intel.zip](releases/macOS/ops_vpn-macOS-Intel.zip) |
+| Linux 64-bit | [ops_vpn-Linux.zip](releases/Linux/ops_vpn-Linux.zip) |
+| Windows 64-bit | [ops_vpn-Windows.zip](releases/Windows/ops_vpn-Windows.zip) |
 
 ---
 
@@ -26,8 +30,8 @@ Pick the zip for your platform, unzip, and run.
 
 | Your Mac | Download |
 |----------|---------|
-| M1 / M2 / M3 (Apple Silicon) | `ops_vpn-macOS-M1.zip` |
-| Intel Mac | `ops_vpn-macOS-Intel.zip` |
+| M1 / M2 / M3 (Apple Silicon) | [ops_vpn-macOS-M1.zip](releases/macOS/ops_vpn-macOS-M1.zip) |
+| Intel Mac | [ops_vpn-macOS-Intel.zip](releases/macOS/ops_vpn-macOS-Intel.zip) |
 
 > **Not sure which chip?** Apple menu → About This Mac → if it says "Apple M1/M2/M3" use M1, if it says "Intel" use Intel.
 
