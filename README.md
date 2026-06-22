@@ -15,48 +15,57 @@ Your app → ops_vpn (local proxy) → remote proxy server → internet
 
 ## ⚡ Download & Run (no coding required)
 
-Go to the `releases/` folder and pick the file for your computer:
+**Download the latest release from GitLab:**  
+👉 **https://git.ringcentral.com/rc-ai-learning/francis-peng-vpn/-/releases/latest**
 
-### macOSX
+Pick the zip for your platform, unzip, and run.
 
-| Your Mac | File to download |
-|----------|-----------------|
-| M1 / M2 / M3 (Apple Silicon) | `releases/macOS/ops_vpn-M1` |
-| Intel Mac | `releases/macOS/ops_vpn-Intel` |
+---
 
-> **Not sure which chip you have?** Click the  Apple menu → About This Mac. If you see "Apple M1/M2/M3" → use `ops_vpn-M1`. If you see "Intel" → use `ops_vpn-Intel`.
+### macOS
 
-**Steps:**
-1. Open Terminal
-2. Run:
+| Your Mac | Download |
+|----------|---------|
+| M1 / M2 / M3 (Apple Silicon) | `ops_vpn-macOS-M1.zip` |
+| Intel Mac | `ops_vpn-macOS-Intel.zip` |
+
+> **Not sure which chip?** Apple menu → About This Mac → if it says "Apple M1/M2/M3" use M1, if it says "Intel" use Intel.
+
 ```bash
-chmod +x ~/Downloads/ops_vpn-M1    # or ops_vpn-Intel
-~/Downloads/ops_vpn-M1
+# Unzip, remove quarantine flag, and run:
+unzip ops_vpn-macOS-M1.zip       # or ops_vpn-macOS-Intel.zip
+xattr -d com.apple.quarantine ops_vpn-M1   # removes the "unverified developer" block
+chmod +x ops_vpn-M1
+./ops_vpn-M1
 ```
-3. Open **http://localhost:7070** in your browser
 
-> **Blocked by macOS?** Go to System Settings → Privacy & Security → scroll down → click **Allow Anyway** next to ops_vpn.
+Open **http://localhost:7070** in your browser.
+
+> **Still blocked?** macOS may show "cannot verify malware" on unsigned binaries.  
+> Fix: System Settings → Privacy & Security → scroll down → click **Allow Anyway** → run again → click **Open**.
 
 ---
 
 ### Linux
 
-Download `releases/Linux/ops_vpn`, then:
+Download `ops_vpn-Linux.zip`:
+
 ```bash
-chmod +x ~/Downloads/ops_vpn
-~/Downloads/ops_vpn
+unzip ops_vpn-Linux.zip
+chmod +x ops_vpn
+./ops_vpn
 ```
+
 Open **http://localhost:7070**.
 
 ---
 
-### Windows
+### Windows (64-bit only)
 
-Download `releases/Windows/ops_vpn.exe` and double-click it.  
+Download `ops_vpn-Windows.zip`, unzip, double-click `ops_vpn.exe`.  
 Open **http://localhost:7070** in your browser.
 
-> **64-bit only.** ops_vpn requires Windows 64-bit (x64). 32-bit Windows is not supported.  
-> If you're on Windows 10 or 11, you're already on 64-bit — no need to check.
+> Requires Windows 10/11 64-bit. Windows 10/11 is always 64-bit — no need to check.
 
 ---
 
