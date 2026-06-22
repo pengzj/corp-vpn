@@ -1,0 +1,8 @@
+.{
+    .name = .ops_vpn,
+    .fingerprint = 0x13e54a13db2672c1,
+    .version = "0.1.0",
+    .minimum_zig_version = "0.16.0",
+    .dependencies = .{},
+    .paths = .{""},
+}
