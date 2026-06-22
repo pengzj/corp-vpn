@@ -14,7 +14,6 @@ frontend/dist/
 
 # Distribution binaries
 dist/
-releases/
 
 # macOS
 .DS_Store
