@@ -13,6 +13,18 @@ Your app → ops_vpn (local proxy) → remote proxy server → internet
 
 ---
 
+## 🌐 Live Demo
+
+Try the UI online (demo mode — no backend required):  
+👉 **https://rc-ai-learning.pages.git.ringcentral.com/francis-peng-vpn/**
+
+Source code: https://git.ringcentral.com/rc-ai-learning/francis-peng-vpn
+
+The demo shows the full interface with sample proxy endpoints pre-loaded.  
+To actually use the proxy, download and run the binary below.
+
+---
+
 ## ⚡ Download & Run (no coding required)
 
 Download the zip for your platform directly from the repo:

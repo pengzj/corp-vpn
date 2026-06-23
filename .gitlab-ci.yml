@@ -1,0 +1,16 @@
+stages:
+  - deploy
+
+pages:
+  stage: deploy
+  image: node:20-alpine
+  script:
+    - cd frontend
+    - npm install
+    - npm run build -- --base=/francis-peng-vpn/
+    - cp -r dist ../public
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
